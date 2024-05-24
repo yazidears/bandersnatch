@@ -3,18 +3,30 @@
   height:100%;
   width:100%;
   background-color:whitesmoke;
+  /*No margins*/
+  margin:0;
 }
 .right{
   display: flex;
   flex-direction: column;
   width: 100%;
+  /*Center it to the middle of the page*/
+  justify-content: center;
+  align-items: center;
   height: 100%;
   background-color: white;
 }
 .left{
+  /*Make it so that the image takes up the whole div*/
+
+
   display: flex;
   flex-direction: column;
   width: 100%;
   height: 100%;
   background-color: white;
+}
+img{
+  background-size: cover;
+  background-position: center;
 }
