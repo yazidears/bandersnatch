@@ -9,8 +9,9 @@
 .right{
   display: flex;
   flex-direction: column;
-  width: 100%;
+  /*Keep image width proportions*/
   /*Center it to the middle of the page*/
+  z-index: 99;
   justify-content: center;
   align-items: center;
   height: 100%;
