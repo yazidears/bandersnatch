@@ -14,10 +14,10 @@
   z-index: 99;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  height: auto;
   background-color: white;
 }
-.content{display:flex; height:100%;} img{width:100%;height:auto;}
+.content{display:flex; height:100%;} img{width:auto;height:auto;}
 
 *{
   margin:0;
