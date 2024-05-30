@@ -17,6 +17,8 @@
   height: 100%;
   background-color: white;
 }
+.content{display:flex; height:100%;} img{width:100%;height:auto;}
+
 *{
   margin:0;
   padding:0;
