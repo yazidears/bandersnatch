@@ -1,1 +1,50 @@
 <!--Starting Point -> Preguntar -> Investigar -> Cnfrontarlo -> (te dice que pares) -> Escapar de la regla-->
+<!--Punto interactivo, aquí se pone el video de J.mp4. Al principio sale la escena de como te dice que pares
+Luego en el segundo 17, el usuario/jugador ha de mantener pulsado la L para que el video prosiga, si el usuario la suelta, el video rebobinará al segundo 17
+En el segundo 21, el usuario/jugador llega a un checkpoint donde tiene que pulsar la R, en caso de soltar cualquiera de las dos ahora rebobinara al segundo 21
+Justo cuando el usuario pulsa la R y la L, tendrá que pulsar repetidamente la X, si no lo hace, se quedará en el segundo 21
+En el segundo 33, el usuario ya puede dejar de pulsar cualquier tecla y el video seguirá naturalmente
+El video tiene que estar en pantalla completa pero sin ser F11.-->
+<!DOCTYPE html>
+<html>
+<body>
+
+<video id="myVideo" width="320" height="240" controls>
+  <source src="jinteractive.mp4" type="video/mp4">
+</video>
+
+<script>
+let video = document.getElementById('myVideo');
+
+let checkpoints = {
+  17: { key: 'l', rewindTo: 17 },
+  21: { key: 'r', rewindTo: 21 },
+  33: { key: null, rewindTo: null }
+};
+
+let currentCheckpoint = 0;
+
+video.addEventListener('timeupdate', function() {
+  let checkpoint = checkpoints[currentCheckpoint];
+  if (video.currentTime >= currentCheckpoint) {
+    if (checkpoint.key) {
+      document.addEventListener('keyup', function(event) {
+        if (event.key.toLowerCase() === checkpoint.key) {
+          video.currentTime = checkpoint.rewindTo;
+        }
+      });
+    }
+    currentCheckpoint += 1;
+  }
+});
+
+video.addEventListener('ended', function() {
+  video.webkitExitFullScreen();
+}, false);
+
+video.webkitEnterFullScreen();
+
+</script>
+
+</body>
+</html>
