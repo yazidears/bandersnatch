@@ -17,43 +17,36 @@ El video tiene que estar en pantalla completa pero sin ser F11.-->
 let video = document.getElementById('myVideo');
 
 let checkpoints = {
-  17: { key: 'l', rewindTo: 17, hold: true },
-  21: { key: 'r', rewindTo: 21, hold: true, nextKey: 'x', nextKeyHold: false },
-  33: { key: null, rewindTo: null }
+  17: { keys: ['l'], rewindTo: 17 },
+  21: { keys: ['l', 'r'], rewindTo: 21 },
+  23: { keys: ['l', 'r', 'x'], rewindTo: 23 },
+  33: { keys: [], rewindTo: null }
 };
 
 let currentCheckpoint = 17; // Start at the first checkpoint
-let keyHeld = false;
+let keysPressed = {};
+
+document.addEventListener('keydown', function(event) {
+  keysPressed[event.key.toLowerCase()] = true;
+});
+
+document.addEventListener('keyup', function(event) {
+  keysPressed[event.key.toLowerCase()] = false;
+});
 
 video.addEventListener('timeupdate', function() {
   let checkpoint = checkpoints[currentCheckpoint];
   if (video.currentTime >= currentCheckpoint) {
-    if (checkpoint && checkpoint.key) {
-      if (checkpoint.hold) {
-        document.addEventListener('keydown', function(event) {
-          if (event.key.toLowerCase() === checkpoint.key) {
-            keyHeld = true;
-          }
-        });
-        document.addEventListener('keyup', function(event) {
-          if (event.key.toLowerCase() === checkpoint.key) {
-            keyHeld = false;
-          }
-        });
+    if (checkpoint) {
+      let allKeysPressed = checkpoint.keys.every(key => keysPressed[key]);
+      if (!allKeysPressed) {
+        video.pause();
+        video.currentTime = checkpoint.rewindTo;
       } else {
-        document.addEventListener('keydown', function(event) {
-          if (event.key.toLowerCase() === checkpoint.key) {
-            keyHeld = true;
-          }
-        });
+        video.play();
       }
     }
     currentCheckpoint += 4; // Move to the next checkpoint
-  }
-  if (!keyHeld) {
-    video.pause();
-  } else {
-    video.play();
   }
 });
 
