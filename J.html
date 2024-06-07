@@ -22,19 +22,19 @@ let checkpoints = {
   33: { key: null, rewindTo: null }
 };
 
-let currentCheckpoint = 0;
+let currentCheckpoint = 17; // Start at the first checkpoint
 
 video.addEventListener('timeupdate', function() {
   let checkpoint = checkpoints[currentCheckpoint];
   if (video.currentTime >= currentCheckpoint) {
-    if (checkpoint.key) {
+    if (checkpoint && checkpoint.key) {
       document.addEventListener('keyup', function(event) {
         if (event.key.toLowerCase() === checkpoint.key) {
           video.currentTime = checkpoint.rewindTo;
         }
       });
     }
-    currentCheckpoint += 1;
+    currentCheckpoint += 4; // Move to the next checkpoint
   }
 });
 
