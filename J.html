@@ -17,24 +17,43 @@ El video tiene que estar en pantalla completa pero sin ser F11.-->
 let video = document.getElementById('myVideo');
 
 let checkpoints = {
-  17: { key: 'l', rewindTo: 17 },
-  21: { key: 'r', rewindTo: 21 },
+  17: { key: 'l', rewindTo: 17, hold: true },
+  21: { key: 'r', rewindTo: 21, hold: true, nextKey: 'x', nextKeyHold: false },
   33: { key: null, rewindTo: null }
 };
 
 let currentCheckpoint = 17; // Start at the first checkpoint
+let keyHeld = false;
 
 video.addEventListener('timeupdate', function() {
   let checkpoint = checkpoints[currentCheckpoint];
   if (video.currentTime >= currentCheckpoint) {
     if (checkpoint && checkpoint.key) {
-      document.addEventListener('keyup', function(event) {
-        if (event.key.toLowerCase() === checkpoint.key) {
-          video.currentTime = checkpoint.rewindTo;
-        }
-      });
+      if (checkpoint.hold) {
+        document.addEventListener('keydown', function(event) {
+          if (event.key.toLowerCase() === checkpoint.key) {
+            keyHeld = true;
+          }
+        });
+        document.addEventListener('keyup', function(event) {
+          if (event.key.toLowerCase() === checkpoint.key) {
+            keyHeld = false;
+          }
+        });
+      } else {
+        document.addEventListener('keydown', function(event) {
+          if (event.key.toLowerCase() === checkpoint.key) {
+            keyHeld = true;
+          }
+        });
+      }
     }
     currentCheckpoint += 4; // Move to the next checkpoint
+  }
+  if (!keyHeld) {
+    video.pause();
+  } else {
+    video.play();
   }
 });
 
