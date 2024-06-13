@@ -2,8 +2,22 @@ let video = document.getElementById('myVideo');
 
 let checkpoints = {
   18: { keys: ['l'], rewindTo: 18 },
-  21: { keys: ['l', 'r'], rewindTo: 21 },
+  19: { keys: ['l'], rewindTo: 18 },
+  20: { keys: ['l'], rewindTo: 18 },
+
+  21: { keys: ['l', 'r'], rewindTo: 20.2 },
+  22: { keys: ['l', 'r'], rewindTo: 20.2 },
+
   23: { keys: ['l', 'r', 'x'], rewindTo: 23 },
+  24: { keys: ['l', 'r', 'x'], rewindTo: 23 },
+  25: { keys: ['l', 'r', 'x'], rewindTo: 23 },
+  26: { keys: ['l', 'r', 'x'], rewindTo: 23 },
+  27: { keys: ['l', 'r', 'x'], rewindTo: 23 },
+  28: { keys: ['l', 'r', 'x'], rewindTo: 23 },
+  29: { keys: ['l', 'r', 'x'], rewindTo: 23 },
+  30: { keys: ['l', 'r', 'x'], rewindTo: 23 },
+  31: { keys: ['l', 'r', 'x'], rewindTo: 23 },
+  32: { keys: ['l', 'r', 'x'], rewindTo: 23 },
   33: { keys: [], rewindTo: null }
 };
 
