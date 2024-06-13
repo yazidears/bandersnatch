@@ -42,5 +42,8 @@ video.addEventListener('timeupdate', function() {
 });
 
 video.addEventListener('ended', function() {
-    // Handle video end (e.g., show a message or play again)
-});
+    alert("Congratulations! You completed the interactive video!");
+    video.currentTime = 33; // Reset the video to the beginning
+    video.play(); // Start playing again
+  });
+  
