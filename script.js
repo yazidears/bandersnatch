@@ -4,10 +4,8 @@ let checkpoints = {
   18: { keys: ['l'], rewindTo: 18 },
   19: { keys: ['l'], rewindTo: 18 },
   20: { keys: ['l'], rewindTo: 18 },
-
   21: { keys: ['l', 'r'], rewindTo: 20.2 },
   22: { keys: ['l', 'r'], rewindTo: 20.2 },
-
   23: { keys: ['l', 'r', 'x'], rewindTo: 23 },
   24: { keys: ['l', 'r', 'x'], rewindTo: 23 },
   25: { keys: ['l', 'r', 'x'], rewindTo: 23 },
