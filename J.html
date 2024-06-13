@@ -1,62 +1,12 @@
-<!--Starting Point -> Preguntar -> Investigar -> Cnfrontarlo -> (te dice que pares) -> Escapar de la regla-->
-<!--Punto interactivo, aquí se pone el video de J.mp4. Al principio sale la escena de como te dice que pares
-Luego en el segundo 17, el usuario/jugador ha de mantener pulsado la L para que el video prosiga, si el usuario la suelta, el video rebobinará al segundo 17
-En el segundo 21, el usuario/jugador llega a un checkpoint donde tiene que pulsar la R, en caso de soltar cualquiera de las dos ahora rebobinara al segundo 21
-Justo cuando el usuario pulsa la R y la L, tendrá que pulsar repetidamente la X, si no lo hace, se quedará en el segundo 21
-En el segundo 33, el usuario ya puede dejar de pulsar cualquier tecla y el video seguirá naturalmente
-El video tiene que estar en pantalla completa pero sin ser F11.-->
 <!DOCTYPE html>
 <html>
 <body>
 
-<video id="myVideo" width="320" height="240" controls>
+<video id="myVideo" width="320" height="240" controls autoplay>
   <source src="jinteractive.mp4" type="video/mp4">
 </video>
 
-<script>
-let video = document.getElementById('myVideo');
-
-let checkpoints = {
-  17: { keys: ['l'], rewindTo: 17 },
-  21: { keys: ['l', 'r'], rewindTo: 21 },
-  23: { keys: ['l', 'r', 'x'], rewindTo: 23 },
-  33: { keys: [], rewindTo: null }
-};
-
-let currentCheckpoint = 17; // Start at the first checkpoint
-let keysPressed = {};
-
-document.addEventListener('keydown', function(event) {
-  keysPressed[event.key.toLowerCase()] = true;
-});
-
-document.addEventListener('keyup', function(event) {
-  keysPressed[event.key.toLowerCase()] = false;
-});
-
-video.addEventListener('timeupdate', function() {
-  let checkpoint = checkpoints[currentCheckpoint];
-  if (video.currentTime >= currentCheckpoint) {
-    if (checkpoint) {
-      let allKeysPressed = checkpoint.keys.every(key => keysPressed[key]);
-      if (!allKeysPressed) {
-        video.pause();
-        video.currentTime = checkpoint.rewindTo;
-      } else {
-        video.play();
-      }
-    }
-    currentCheckpoint += 4; // Move to the next checkpoint
-  }
-});
-
-video.addEventListener('ended', function() {
-  video.webkitExitFullScreen();
-}, false);
-
-video.webkitEnterFullScreen();
-
-</script>
+<script src="script.js"></script> 
 
 </body>
 </html>
