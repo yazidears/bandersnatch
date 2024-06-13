@@ -3,7 +3,7 @@ let video = document.getElementById('myVideo');
 let checkpoints = {
   18: { keys: ['l'], rewindTo: 18 },
   21: { keys: ['l', 'r'], rewindTo: 21 },
-  23: { keys: ['x'], rewindTo: 23, repeating: true }, 
+  23: { keys: ["l","r","x"], rewindTo: 23}, 
   33: { keys: [], rewindTo: null }
 };
 
