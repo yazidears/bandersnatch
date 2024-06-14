@@ -50,5 +50,20 @@ video.addEventListener('timeupdate', function() {
 });
 
 video.addEventListener('ended', function() {
-  alert("FINISH")
+
+  alert("After the confrontation, you need to decide what to do next:")
+  heyy = prompt("You have two options: 1. Reason with Todd (Stay Quiet), or 2. Protect Alice")
+  if (heyy == 1){
+    window.location.href = "K.html";
+  }
+  else if (heyy == 2){
+    window.location.href = "L.html";
+  }
+  else{
+    alert("Please enter a valid option")
+    alert("ABORTING")
+    window.location.href = "https://google.com/";
+
+
+  }
 });
